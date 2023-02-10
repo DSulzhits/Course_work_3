@@ -3,6 +3,8 @@ from datetime import datetime
 
 
 def get_data(url):
+    """Функция, которая получает данные в формате .json и если они получены конвертирует их в формат для работы
+    в python, если данные не получены то программа сообщает по какой причине"""
     try:
         response = requests.get(url)
         if response.status_code == 200:
@@ -16,6 +18,7 @@ def get_data(url):
 
 
 def get_operations_executed(data):
+    """Функция, возвращающая только те транзакции в которых есть необходимые ключи и значения"""
     operation_ex = []
     for operation in data:
         if 'state' in operation and operation['state'] == 'EXECUTED':
@@ -28,12 +31,14 @@ def get_operations_executed(data):
 
 
 def get_last_five_operations(operations_executed, num_of_operations):
+    """Функция возвращающая последних 5 уже отсортированных транзакций (от новых к старым)"""
     operations_sort = sorted(operations_executed, key=lambda operation: operation["date"], reverse=True)
     last_five = operations_sort[0:num_of_operations]
     return last_five
 
 
 def get_operations_formatted(last_five_operations):
+    """Функция которая в форме списка выводит информацию о транзакции в заданном формате"""
     operations_formatted_lst = []
     for operation in last_five_operations:
         date = datetime.strptime(operation["date"], "%Y-%m-%dT%H:%M:%S.%f").strftime("%d.%m.%Y")

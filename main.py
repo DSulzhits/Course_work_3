@@ -1,8 +1,8 @@
 from develop import utils
-from pprint import pprint
 
 
 def main():
+    """Функция запускающая программу"""
     OPERATIONS_URL = "https://www.jsonkeeper.com/b/VK9M"
     num_of_operations = 5
 
@@ -18,7 +18,6 @@ def main():
 
     for string in operations_formatted:
         print(f"{string}\n")
-
 
 
 if __name__ == "__main__":

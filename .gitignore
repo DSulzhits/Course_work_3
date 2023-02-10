@@ -1,4 +1,7 @@
 # created by virtualenv automatically
-venv/
-.idea/
+/venv
+/.idea
 pyvenv.cfg
+/.pytest_cache
+.coverage
+/htmlcov
